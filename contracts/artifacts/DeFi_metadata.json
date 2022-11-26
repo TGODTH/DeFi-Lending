@@ -12,6 +12,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "BorrowPeriod",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "Check_All_Dept",
 				"outputs": [
 					{
@@ -71,6 +84,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "i",
+						"type": "uint256"
+					}
+				],
+				"name": "Check_Margin",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "result",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "account",
 						"type": "address"
@@ -81,6 +113,43 @@
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "GetTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "time",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "n",
+						"type": "uint256"
+					}
+				],
+				"name": "GetTimedata",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "time",
 						"type": "uint256"
 					}
 				],
@@ -116,6 +185,19 @@
 			{
 				"inputs": [],
 				"name": "Margin_call",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "period",
+						"type": "uint256"
+					}
+				],
+				"name": "SetBorrowPeriod",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -229,6 +311,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "endtime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -245,6 +340,19 @@
 				"name": "repay",
 				"outputs": [],
 				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "timenow",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -321,11 +429,11 @@
 			]
 		},
 		"contracts/DeFi.sol": {
-			"keccak256": "0xbac1bb32d65c35dbc4e72ea508db4112e4e30d414c52a77ede007d44b6b7f731",
+			"keccak256": "0xe1a2b3385b1bc1f4962a202aa94877beb27c02a3bfe9fa24cf8b4f7591426ad9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3cf8816fa4cb52375a5d1e6dfe7982f6329427d5d3289c8451bc8334016f8cd2",
-				"dweb:/ipfs/Qmcgkxv5QjxzkxT8146PNvoax6o693NVXgueXF3pywTfs5"
+				"bzz-raw://ef2d066f4a04899f5328065a4891d8f77eb4e9ea237de5c790d52fc302c6cba3",
+				"dweb:/ipfs/QmewAwiNTpwCVczjuzPsBgX81G34nACBvSP12BUpXoLmz8"
 			]
 		},
 		"contracts/MarginToken.sol": {

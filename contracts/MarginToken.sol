@@ -11,7 +11,7 @@ contract MarginToken is ERC20 {
         _mint(recipient, amount);
     }
 
-    function approve(address owner,address spender, uint256 amount) public returns (bool) {
+    function approve(address owner,address spender, uint256 amount) external  returns (bool) {
         _approve(owner, spender, amount);
         return true;
     }

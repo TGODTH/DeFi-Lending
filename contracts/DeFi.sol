@@ -3,19 +3,22 @@ pragma solidity ^0.8.17;
 import "contracts/MarginToken.sol";
 
 contract DeFi {
-    address public owner;
+    address public Owner;
     address public TokenAddress;
     uint256 public MarginRate;
     mapping(address => uint256) public _Lender;
     mapping(address => uint256[][]) public _Borrower;
     address[] _BorrowerList;
+    uint256 public BorrowPeriod;
+
 
     constructor() {
-        owner = msg.sender;
+        Owner = msg.sender;
+
     }
 
     function is_in(address value, address[] memory array)
-        private 
+        private
         pure
         returns (bool isin)
     {
@@ -28,20 +31,27 @@ contract DeFi {
     }
 
     function SetToken(address setTokenAddress) external {
-        require(msg.sender == owner, "Admin only");
+        require(msg.sender == Owner, "Admin only");
         TokenAddress = setTokenAddress;
     }
 
-    function SetMagin(uint256 MarginMutiply) external {
-        require(msg.sender == owner, "Admin only");
-        MarginRate = MarginMutiply;
+    function SetMagin(uint256 Margin_Rate_percent) external {
+        // require(msg.sender == Owner, "Admin only");
+        MarginRate = Margin_Rate_percent;
+    }
+
+    function SetBorrowPeriod(uint256 period_sec) public {
+        // require(msg.sender == Owner, "Admin only");
+        BorrowPeriod = period_sec;
     }
 
     function deposit() external payable {
+        require(msg.value > 0, "Amount invalid");
         _Lender[msg.sender] += msg.value;
     }
 
     function withdraw(uint256 amount) external {
+        require(amount > 0, "Amount invalid");
         require(amount <= _Lender[msg.sender], "Balance not eough");
         require(
             amount <= address(this).balance,
@@ -67,15 +77,18 @@ contract DeFi {
         if (!is_in(msg.sender, _BorrowerList)) {
             _BorrowerList.push(msg.sender);
         }
-        _Borrower[msg.sender].push() = [block.timestamp, amount];
+        _Borrower[msg.sender].push() = [block.timestamp + BorrowPeriod, amount];
         payable(msg.sender).transfer(amount);
     }
 
     function repay() external payable {
-        require(
-            msg.value <= Check_Dept(msg.sender),
-            "Amount more than dept"
-        );
+        require(msg.value > 0, "Amount invalid");
+        if (!is_in(msg.sender, _BorrowerList)) {
+            revert("You have no dept");
+        } else {
+            Margin_call_Account(msg.sender);
+        }
+        require(msg.value <= Check_Dept(msg.sender), "Amount more than dept");
         MarginToken Token = MarginToken(TokenAddress);
         Token.transfer(msg.sender, (msg.value * MarginRate) / 100);
         DeleteRecord(msg.sender, msg.value);
@@ -116,10 +129,10 @@ contract DeFi {
     }
 
     function Check_Dept(address account) public view returns (uint256) {
-        uint dept;
+        uint256 dept;
         for (uint256 j; j < _Borrower[account].length; j++) {
-                dept += _Borrower[account][j][1];
-            }
+            dept += _Borrower[account][j][1];
+        }
         return dept;
     }
 
@@ -138,16 +151,25 @@ contract DeFi {
     }
 
     function Margin_call() public {
+        for (uint256 i; i < _BorrowerList.length; ) {
+            if (Check_Margin(i) != 2) {
+                i++;
+            }
+        }
+    }
+
+    function Margin_call_Account(address borrower) private  {
         for (uint256 i; i < _BorrowerList.length; i++) {
-            if (Check_Margin(i) == 2) {
-                i--;
+            if (_BorrowerList[i] == borrower) {
+                Check_Margin(i);
+                break;
             }
         }
     }
 
     function Check_Margin(uint256 i) private returns (uint256 result) {
         for (uint256 j; j < _Borrower[_BorrowerList[i]].length; j++) {
-            if (_Borrower[_BorrowerList[i]][j][0] <= block.timestamp) {
+            if (_Borrower[_BorrowerList[i]][j][0] >= block.timestamp) {
                 if (j != 0) {
                     j--;
                     for (
@@ -180,7 +202,23 @@ contract DeFi {
         }
     }
 
-    function Check_Confiscated_Token() external view  returns (uint ContactToken){
-        return Check_Token(address(this)) - ((Check_All_Dept()*150)/100);
+    function Check_Confiscated_Token()
+        external
+        view
+        returns (uint256 Confiscated_Token)
+    {
+        return Check_Token(address(this)) - ((Check_All_Dept() * MarginRate) / 100);
     }
+
+    // function GetTimedata(address account, uint256 n)
+    //     public
+    //     view
+    //     returns (uint256 time)
+    // {
+    //     return _Borrower[account][n][0];
+    // }
+
+    // function GetTime() public view returns (uint256 time) {
+    //     return block.timestamp;
+    // }
 }

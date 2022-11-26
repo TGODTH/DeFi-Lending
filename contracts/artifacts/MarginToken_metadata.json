@@ -428,11 +428,11 @@
 			]
 		},
 		"contracts/MarginToken.sol": {
-			"keccak256": "0xabaa46afa57af0bcbd9f3db5e8a901e27a6b0a452fc9d6e99c2233fb03676faa",
+			"keccak256": "0x9caa0a51ae5d1d8d3cb418fef26a3a21e2b0799ca103ece766eea2b882b58fe2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bc2aec406023b36d1e735a8c6c6ae23dfb507b6aea5f2d99b60dbafc5fed1133",
-				"dweb:/ipfs/QmZzSH1p3WbB9rrUrhy6phbUqSDPjRBySQSL1sPvsqAYDL"
+				"bzz-raw://20a44578637a3ff7694cac85076d292bdb416d0828c776adecf3692637a38e99",
+				"dweb:/ipfs/QmeftWu78SfnHAtVSnucGTcTqmgJpxVuNArxdfRBLhypox"
 			]
 		}
 	},
