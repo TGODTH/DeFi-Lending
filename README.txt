@@ -1,28 +1,49 @@
-REMIX DEFAULT WORKSPACE
+DeFi Lending Docs
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+ระบบมี 2 ฝั่งคือผู้ปล่อยกู้กับผู้กู้ โดยผู้กู้จะกู้เงิน (ETH) จากกองกลางที่มาจากผู้ปล่อยกู้ทั้งหมด และต้องค้ำประกันโดยใช้ Token ในอัตราทำกำหนดไว้ (MarginRate) หากผู้กู้ไม่ชำระในระยะเวลาที่กำหนด (BorrowPeriod) จะถูกยึดหลักทรัพย์ค้ำประกันไป
+*ผู้กู้สามารถกู้ทบกันได้หลายครั้ง โดยแยกเวลาที่ต้องชำระคืนเป็นต่างหาก
+*ระบบนี้ไม่ได้ทำในส่วนของดอกเบี้ย และการแสดง Token ใน Metamask
 
-This workspace contains 3 directories:
+-Token
+Get_Free_Token
+ เสก Token ขึ้นมาให้กับบัญชีตัวเอง
+Check_My_Token
+ ตรวจสอบ Token ที่มีในบัญชี
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
+-ผู้ฝากเงิน
+deposit
+ ฝากเป็น ETH
+withdraw
+ ถอนเป็น ETH
+Check_Balance
+ ตรวจสอบยอดเงินในบัญชี
 
-SCRIPTS
+-ผู้กู้
+borrow
+ กู้เงินเป็น ETH โดยใช้ Token ค้ำประกัน
+repay
+ ชำระหนี้คืนด้วย ETH และได้รับ Token คืน
+Check_My_Dept
+ ตรวจสอบยอดหนี้ที่ต้องชำระ
 
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
+-ผู้ดูแล (เปิดให้ผูใช้ใช้งานได้)
+SetMagin
+ ตั้งค่าอัตราค้ำประกันในหน่วยเปอร์เซ็นต์ (ไม่ใส่ %) เช่น ตั้งเป็น 150 หากกู้ 100 ETH ต้องค้ำประกันด้วย Token จำนวน 150 เหรียญ (150% ของ เงินที่กู้)
+SetBorrowPeriod
+ ตั้งค่าระยะเวลาที่ต้องชำระหนี้ก่อนจะถูกยึดทรัพย์ (Token) หน่วยเป็นวินาที
+MarginRate
+ ตรวจสอบอัตราค้ำประกัน
+BorrowPeriod
+ ตรวจสอบระยะเวลาชำระหนี้
+Check_All_Dept
+ ตรวจสอบจำนวนหนี้ทั้งหมดในระบบ
+Check_Confiscated_Token
+ ตรวจสอบจำนวนหลักทรัพย์ค้ำประกันทั้งหมดที่ยึดมาได้ (Token)
 
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
-
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
-
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
-
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+-ผู้ดูแล (เปิดให้ใช้สำหรับบัญชีที่ deploy Smart contract เท่านั้น)
+SetToken
+ ตั้งค่าลิงก์ไปหา Smart contract ของ Token ใส่เป็น Public address
+ 
+-ระบบอัตโนมัติ (สำหรับการใช้ภาษาอื่นคอยยิง api มาให้ทำงาน)
+Margin_call
+ ตรวจสอบยอดค้างชำระทั้งหมด หากส่วนไหนเกินระยะเวลาชำระหนี้จะยึดหลักทรัพย์และลบประวัติการกู้ครั้งนั้น (หากบัญชีไหนจะชำระหนี้จะใช้ฟังก์ชันนี้ตรวจสอบประวัติก่อนอัตโนมัติ)
