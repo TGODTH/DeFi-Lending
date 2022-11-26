@@ -12,9 +12,41 @@
 			},
 			{
 				"inputs": [],
+				"name": "CheckBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "CheckDept",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "CheckToken",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -281,19 +313,19 @@
 			]
 		},
 		"contracts/DeFi.sol": {
-			"keccak256": "0x991a4fc5c9160c1b6d2317400cbb02e4356c1744a80803f9bfaa7f696c73bd6c",
+			"keccak256": "0x23b5c2b73910fb3908ba1bfba50408cee9f6f75c4fd58569e1e9de9339599c21",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a939b9a097162bd47986266368513630e78eb986a2842d5ed6f1a086de899107",
-				"dweb:/ipfs/Qmb8CVwsxWYH7BU7CvTrudmrN2LeA1vML1fydkppSsRS4J"
+				"bzz-raw://d8038b549c82722ac7f79980df4deac085e2d62f248329e0e963eee3931dece0",
+				"dweb:/ipfs/QmTauDDFCqUBgWqhhkAeE3HfYpBEiWZpYRuqeqZcb4VKuG"
 			]
 		},
 		"contracts/MarginToken.sol": {
-			"keccak256": "0x802474bc2975c8dd683699003c6bc6a5c2fb56ad852c93de733e8badf6286652",
+			"keccak256": "0x20e6b24d9fffd272ea675eb770d5d1fa27100a962bec52471d35d8655b08bab8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://566106a97505be33d53d7a6c762eba96b853adb5aea48e6c464d7fbde3a35284",
-				"dweb:/ipfs/Qmc8bgpEbXH4pbmYA1x7sbANF2mgJV1sNTfAW16zhLh81n"
+				"bzz-raw://9ac1e9e64da7527547926146df8ab89d53cab54c97ff009e732b1f65c3b296cf",
+				"dweb:/ipfs/Qmedg62ZKV56BJzMRLWhQTeo9zTLcnHbfKqpoTpJXhUwcG"
 			]
 		}
 	},

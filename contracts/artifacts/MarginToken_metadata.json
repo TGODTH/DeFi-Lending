@@ -150,7 +150,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "approved",
+				"name": "approve",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -428,11 +428,11 @@
 			]
 		},
 		"contracts/MarginToken.sol": {
-			"keccak256": "0x20e6b24d9fffd272ea675eb770d5d1fa27100a962bec52471d35d8655b08bab8",
+			"keccak256": "0xabaa46afa57af0bcbd9f3db5e8a901e27a6b0a452fc9d6e99c2233fb03676faa",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9ac1e9e64da7527547926146df8ab89d53cab54c97ff009e732b1f65c3b296cf",
-				"dweb:/ipfs/Qmedg62ZKV56BJzMRLWhQTeo9zTLcnHbfKqpoTpJXhUwcG"
+				"bzz-raw://bc2aec406023b36d1e735a8c6c6ae23dfb507b6aea5f2d99b60dbafc5fed1133",
+				"dweb:/ipfs/QmZzSH1p3WbB9rrUrhy6phbUqSDPjRBySQSL1sPvsqAYDL"
 			]
 		}
 	},

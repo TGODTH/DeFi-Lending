@@ -29,17 +29,17 @@ contract test{
             index++;
             amount -= int(_Borrower[borrower][i][1]);
         }
-        return [uint(amount), uint(index-1)];
+        return [uint(-amount), uint(index-1)];
     } 
     function DeleteRecord(address borrower, uint amount) public{
         uint[2] memory data = DecreaseDept(borrower, int(amount));
         for(uint i; i < _Borrower[borrower].length-data[1]; i++){
           _Borrower[borrower][i] = _Borrower[borrower][i+data[1]];
         }
-        for (uint i; i <= data[1]; i++) 
+        for (uint i; i < data[1]; i++) 
         {
             _Borrower[borrower].pop();
         }
-        _Borrower[borrower][0][1] -= data[0];
+        _Borrower[borrower][0][1] = data[0];
     }
 }

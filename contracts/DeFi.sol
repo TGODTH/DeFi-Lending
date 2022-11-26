@@ -29,13 +29,15 @@ contract DeFi{
     }
     function withdraw(uint amount) external{
         require(amount<=_Lender[msg.sender], "Balance not eough");
+        require(amount <= address(this).balance, "Smart Contact have not enough eth");
         _Lender[msg.sender] -= amount;
         payable (msg.sender).transfer(amount);
     }
     function borrow(uint amount) external{
         require(amount > 0, "Amount invalid");
+        require(amount <= address(this).balance, "Smart Contact have not enough eth");
         MarginToken Token = MarginToken(TokenAddress);
-        Token.approved(msg.sender, address(this), (amount*MarginRate)/100);
+        Token.approve(msg.sender, address(this), (amount*MarginRate)/100);
         Token.transferFrom(msg.sender, address(this), (amount*MarginRate)/100);
         _Borrower[msg.sender].push() = [block.timestamp,amount];
         _BorrowerAmount[msg.sender] += amount;
@@ -50,26 +52,26 @@ contract DeFi{
         _BorrowerAmount[msg.sender] -= msg.value;
     }
 
-    function DecreaseDept(address borrower, int amount) private view returns(int[2] memory){
+    function DecreaseDept(address borrower, int amount) private view returns(uint[2] memory){
         int index;
         for (uint i; amount > 0; i++) 
         {
             index++;
             amount -= int(_Borrower[borrower][i][1]);
         }
-        return [amount, index-1];
+        return [uint(-amount), uint(index-1)];
     } 
     function DeleteRecord(address borrower, uint amount) public{
-        int[2] memory data = DecreaseDept(borrower, int(amount));
-        for(uint i; i < _Borrower[borrower].length-1; i++){
-          _Borrower[borrower][i] = _Borrower[borrower][i+uint(data[1])];
+        uint[2] memory data = DecreaseDept(borrower, int(amount));
+        for(uint i; i < _Borrower[borrower].length-data[1]; i++){
+          _Borrower[borrower][i] = _Borrower[borrower][i+data[1]];
         }
-        for (uint i; i <= uint(data[1]); i++) 
+        for (uint i; i < data[1]; i++) 
         {
             _Borrower[borrower].pop();
         }
-        _Borrower[borrower][0][1] -= uint(data[0]*2);
-  }
+        _Borrower[borrower][0][1] = data[0];
+    }
 
     function GetFreeToken(uint amount) external {
         MarginToken Token = MarginToken(TokenAddress);
