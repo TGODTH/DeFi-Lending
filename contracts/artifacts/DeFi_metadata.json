@@ -55,7 +55,7 @@
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "ContactToken",
+						"name": "Confiscated_Token",
 						"type": "uint256"
 					}
 				],
@@ -82,22 +82,16 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "i",
-						"type": "uint256"
-					}
-				],
-				"name": "Check_Margin",
+				"inputs": [],
+				"name": "Check_My_Dept",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "result",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -113,43 +107,6 @@
 					{
 						"internalType": "uint256",
 						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "GetTime",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "time",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "account",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "n",
-						"type": "uint256"
-					}
-				],
-				"name": "GetTimedata",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "time",
 						"type": "uint256"
 					}
 				],
@@ -190,10 +147,23 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "Owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "period",
+						"name": "period_sec",
 						"type": "uint256"
 					}
 				],
@@ -206,7 +176,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "MarginMutiply",
+						"name": "Margin_Rate_percent",
 						"type": "uint256"
 					}
 				],
@@ -311,48 +281,9 @@
 			},
 			{
 				"inputs": [],
-				"name": "endtime",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "repay",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "timenow",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -429,19 +360,19 @@
 			]
 		},
 		"contracts/DeFi.sol": {
-			"keccak256": "0xe1a2b3385b1bc1f4962a202aa94877beb27c02a3bfe9fa24cf8b4f7591426ad9",
+			"keccak256": "0x2207429a106cc9f280d8e4b3332afecee5efb728a4b71dadf9eece95aaf07ee4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ef2d066f4a04899f5328065a4891d8f77eb4e9ea237de5c790d52fc302c6cba3",
-				"dweb:/ipfs/QmewAwiNTpwCVczjuzPsBgX81G34nACBvSP12BUpXoLmz8"
+				"bzz-raw://dd8642e96ec68d141a4b4e3b7ace668d4b0ec6200a4ede411fb2e69f42dd1c01",
+				"dweb:/ipfs/QmciLjNYeeHbdvNy5d2R9BeeGNxTUgkEq1kZNynNxhb6er"
 			]
 		},
 		"contracts/MarginToken.sol": {
-			"keccak256": "0xabaa46afa57af0bcbd9f3db5e8a901e27a6b0a452fc9d6e99c2233fb03676faa",
+			"keccak256": "0x9caa0a51ae5d1d8d3cb418fef26a3a21e2b0799ca103ece766eea2b882b58fe2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bc2aec406023b36d1e735a8c6c6ae23dfb507b6aea5f2d99b60dbafc5fed1133",
-				"dweb:/ipfs/QmZzSH1p3WbB9rrUrhy6phbUqSDPjRBySQSL1sPvsqAYDL"
+				"bzz-raw://20a44578637a3ff7694cac85076d292bdb416d0828c776adecf3692637a38e99",
+				"dweb:/ipfs/QmeftWu78SfnHAtVSnucGTcTqmgJpxVuNArxdfRBLhypox"
 			]
 		}
 	},

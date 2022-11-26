@@ -3,11 +3,11 @@ pragma solidity ^0.8.17;
 import "contracts/MarginToken.sol";
 
 contract DeFi {
-    address public Owner;
-    address public TokenAddress;
+    address private Owner;
+    address private TokenAddress;
     uint256 public MarginRate;
-    mapping(address => uint256) public _Lender;
-    mapping(address => uint256[][]) public _Borrower;
+    mapping(address => uint256) private _Lender;
+    mapping(address => uint256[][]) private _Borrower;
     address[] _BorrowerList;
     uint256 public BorrowPeriod;
 
@@ -36,12 +36,10 @@ contract DeFi {
     }
 
     function SetMagin(uint256 Margin_Rate_percent) external {
-        // require(msg.sender == Owner, "Admin only");
         MarginRate = Margin_Rate_percent;
     }
 
     function SetBorrowPeriod(uint256 period_sec) public {
-        // require(msg.sender == Owner, "Admin only");
         BorrowPeriod = period_sec;
     }
 
@@ -123,12 +121,12 @@ contract DeFi {
         Token.GetToken(msg.sender, amount);
     }
 
-    function Check_Token(address account) public view returns (uint256) {
+    function Check_Token(address account) private view returns (uint256) {
         MarginToken Token = MarginToken(TokenAddress);
         return Token.balanceOf(account);
     }
 
-    function Check_Dept(address account) public view returns (uint256) {
+    function Check_Dept(address account) private view returns (uint256) {
         uint256 dept;
         for (uint256 j; j < _Borrower[account].length; j++) {
             dept += _Borrower[account][j][1];
@@ -210,15 +208,11 @@ contract DeFi {
         return Check_Token(address(this)) - ((Check_All_Dept() * MarginRate) / 100);
     }
 
-    // function GetTimedata(address account, uint256 n)
-    //     public
-    //     view
-    //     returns (uint256 time)
-    // {
-    //     return _Borrower[account][n][0];
-    // }
+    function Check_My_Dept() public view returns(uint){
+        return Check_Dept(msg.sender);
+    }
 
-    // function GetTime() public view returns (uint256 time) {
-    //     return block.timestamp;
-    // }
+    function Check_My_Token() public view returns(uint){
+        return Check_Token(msg.sender);
+    }
 }
