@@ -12,7 +12,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "CheckBalance",
+				"name": "Check_All_Dept",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -25,7 +25,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "CheckDept",
+				"name": "Check_Balance",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -38,7 +38,26 @@
 			},
 			{
 				"inputs": [],
-				"name": "CheckToken",
+				"name": "Check_Confiscated_Token",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "ContactToken",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "Check_Dept",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -53,18 +72,19 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "borrower",
+						"name": "account",
 						"type": "address"
-					},
+					}
+				],
+				"name": "Check_Token",
+				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "DeleteRecord",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -75,7 +95,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "GetFreeToken",
+				"name": "Get_Free_Token",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -91,6 +111,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "Margin_call",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -151,25 +178,6 @@
 					}
 				],
 				"name": "_Borrower",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "_BorrowerAmount",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -313,19 +321,19 @@
 			]
 		},
 		"contracts/DeFi.sol": {
-			"keccak256": "0x23b5c2b73910fb3908ba1bfba50408cee9f6f75c4fd58569e1e9de9339599c21",
+			"keccak256": "0xbac1bb32d65c35dbc4e72ea508db4112e4e30d414c52a77ede007d44b6b7f731",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d8038b549c82722ac7f79980df4deac085e2d62f248329e0e963eee3931dece0",
-				"dweb:/ipfs/QmTauDDFCqUBgWqhhkAeE3HfYpBEiWZpYRuqeqZcb4VKuG"
+				"bzz-raw://3cf8816fa4cb52375a5d1e6dfe7982f6329427d5d3289c8451bc8334016f8cd2",
+				"dweb:/ipfs/Qmcgkxv5QjxzkxT8146PNvoax6o693NVXgueXF3pywTfs5"
 			]
 		},
 		"contracts/MarginToken.sol": {
-			"keccak256": "0x20e6b24d9fffd272ea675eb770d5d1fa27100a962bec52471d35d8655b08bab8",
+			"keccak256": "0xabaa46afa57af0bcbd9f3db5e8a901e27a6b0a452fc9d6e99c2233fb03676faa",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9ac1e9e64da7527547926146df8ab89d53cab54c97ff009e732b1f65c3b296cf",
-				"dweb:/ipfs/Qmedg62ZKV56BJzMRLWhQTeo9zTLcnHbfKqpoTpJXhUwcG"
+				"bzz-raw://bc2aec406023b36d1e735a8c6c6ae23dfb507b6aea5f2d99b60dbafc5fed1133",
+				"dweb:/ipfs/QmZzSH1p3WbB9rrUrhy6phbUqSDPjRBySQSL1sPvsqAYDL"
 			]
 		}
 	},
