@@ -31,7 +31,7 @@ contract DeFi {
     }
 
     function SetToken(address setTokenAddress) external {
-        require(msg.sender == Owner, "Admin only");
+        require(msg.sender == Owner, "Admin only.");
         TokenAddress = setTokenAddress;
     }
 
@@ -44,26 +44,26 @@ contract DeFi {
     }
 
     function deposit() external payable {
-        require(msg.value > 0, "Amount invalid");
+        require(msg.value > 0, "Amount invalid.");
         _Lender[msg.sender] += msg.value;
     }
 
     function withdraw(uint256 amount) external {
-        require(amount > 0, "Amount invalid");
-        require(amount <= _Lender[msg.sender], "Balance not eough");
+        require(amount > 0, "Amount invalid.");
+        require(amount <= _Lender[msg.sender], "Your balance not eough.");
         require(
             amount <= address(this).balance,
-            "Smart Contact have not enough eth"
+            "Smart Contact have not enough ETH."
         );
         _Lender[msg.sender] -= amount;
         payable(msg.sender).transfer(amount);
     }
 
     function borrow(uint256 amount) external {
-        require(amount > 0, "Amount invalid");
+        require(amount > 0, "Amount invalid.");
         require(
             amount <= address(this).balance,
-            "Smart Contact have not enough eth"
+            "Smart Contact have not enough ETH."
         );
         MarginToken Token = MarginToken(TokenAddress);
         Token.approve(msg.sender, address(this), (amount * MarginRate) / 100);
@@ -80,13 +80,15 @@ contract DeFi {
     }
 
     function repay() external payable {
-        require(msg.value > 0, "Amount invalid");
+        require(msg.value > 0, "Amount invalid.");
         if (!is_in(msg.sender, _BorrowerList)) {
-            revert("You have no dept");
-        } else {
-            Margin_call_Account(msg.sender);
-        }
-        require(msg.value <= Check_Dept(msg.sender), "Amount more than dept");
+            revert("You have no dept or repayment period has passed.");
+        } else 
+            if(Margin_call_Account(msg.sender) == 2) {
+                revert("Your collateral has been seized because the repayment period has passed.");
+            }
+        
+        require(msg.value <= Check_Dept(msg.sender), "Amount more than dept.");
         MarginToken Token = MarginToken(TokenAddress);
         Token.transfer(msg.sender, (msg.value * MarginRate) / 100);
         DeleteRecord(msg.sender, msg.value);
@@ -121,12 +123,12 @@ contract DeFi {
         Token.GetToken(msg.sender, amount);
     }
 
-    function Check_Token(address account) private view returns (uint256) {
+    function Check_Token(address account) public view returns (uint256) {
         MarginToken Token = MarginToken(TokenAddress);
         return Token.balanceOf(account);
     }
 
-    function Check_Dept(address account) private view returns (uint256) {
+    function Check_Dept(address account) public  view returns (uint256) {
         uint256 dept;
         for (uint256 j; j < _Borrower[account].length; j++) {
             dept += _Borrower[account][j][1];
@@ -134,8 +136,8 @@ contract DeFi {
         return dept;
     }
 
-    function Check_Balance() external view returns (uint256) {
-        return _Lender[msg.sender];
+    function Check_Balance(address lender) external view returns (uint256) {
+        return _Lender[lender];
     }
 
     function Check_All_Dept() public view returns (uint256) {
@@ -156,11 +158,10 @@ contract DeFi {
         }
     }
 
-    function Margin_call_Account(address borrower) private  {
+    function Margin_call_Account(address borrower) private returns(uint result) {
         for (uint256 i; i < _BorrowerList.length; i++) {
             if (_BorrowerList[i] == borrower) {
-                Check_Margin(i);
-                break;
+                return Check_Margin(i);
             }
         }
     }
@@ -206,13 +207,5 @@ contract DeFi {
         returns (uint256 Confiscated_Token)
     {
         return Check_Token(address(this)) - ((Check_All_Dept() * MarginRate) / 100);
-    }
-
-    function Check_My_Dept() public view returns(uint){
-        return Check_Dept(msg.sender);
-    }
-
-    function Check_My_Token() public view returns(uint){
-        return Check_Token(msg.sender);
     }
 }
