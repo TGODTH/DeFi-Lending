@@ -37,7 +37,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "lender",
+						"type": "address"
+					}
+				],
 				"name": "Check_Balance",
 				"outputs": [
 					{
@@ -71,19 +77,6 @@
 					}
 				],
 				"name": "Check_Dept",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "Check_My_Dept",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -147,19 +140,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "Owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -196,67 +176,6 @@
 				"name": "SetToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "TokenAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "_Borrower",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "_Lender",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -360,11 +279,11 @@
 			]
 		},
 		"contracts/DeFi.sol": {
-			"keccak256": "0x2207429a106cc9f280d8e4b3332afecee5efb728a4b71dadf9eece95aaf07ee4",
+			"keccak256": "0xf9219148eb8d7ef40d8ae870fce91beeccf554ea52b5172b801fd1e0e9e9544b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dd8642e96ec68d141a4b4e3b7ace668d4b0ec6200a4ede411fb2e69f42dd1c01",
-				"dweb:/ipfs/QmciLjNYeeHbdvNy5d2R9BeeGNxTUgkEq1kZNynNxhb6er"
+				"bzz-raw://b228757fc5e9cd8692ea40799f88426c9c91bdb97caba73859700acf0fd249a9",
+				"dweb:/ipfs/QmP9qpvX22XrGar6a8scW7twzLJtKJFQQzaEXpCNvEaLNX"
 			]
 		},
 		"contracts/MarginToken.sol": {
