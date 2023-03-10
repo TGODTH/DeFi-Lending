@@ -64,3 +64,10 @@ https://eth-converter.com/
 
 -Smart contract ของ Token MGT (อยู่บน Sepolia testnet, ไม่เกี่ยวกับการใช้งาน)
 https://sepolia.etherscan.io/address/0x8008ed5bbd8a709611aeb52ab4348ece1570d551#readContract
+
+
+โจทย์ของโปรเจค - ทำ smart contract การกู้เงิน
+- ผู้กู้
+- ผู้ให้ยืม
+- การชำระหนี้
+- การยึดทรัพย์เมื่อไม่ชำระหนี้ให้ทันเวลา
